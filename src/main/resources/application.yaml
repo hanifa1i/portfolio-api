@@ -1,6 +1,18 @@
 spring:
   application:
     name: portfolio-api
+  datasource:
+    url: jdbc:postgresql://localhost:5432/portfolio_db
+    username: admin
+    password: admin
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
 
 server:
   port: 8080
