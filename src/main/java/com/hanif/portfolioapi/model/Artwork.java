@@ -27,7 +27,7 @@ public class Artwork {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    private LocalDateTime create_at;
+    private LocalDateTime createAt;
 
     private Boolean visible;
 
@@ -38,4 +38,25 @@ public class Artwork {
     @Builder.Default
     @OneToMany(mappedBy = "artwork", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ArtworkTagLink> artworkTagLinks = new ArrayList<>();
+
+    @PrePersist
+    protected  void onCreate() {
+        this.createAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected  void onUpdate() {
+        this.createAt = LocalDateTime.now();
+    }
+
+    public void addImage(ArtworkImage image) {
+        images.add(image);
+        image.setArtwork(this);
+    }
+
+    public void addTagLink(ArtworkTagLink link) {
+        artworkTagLinks.add(link);
+        link.setArtwork(this);
+    }
+
 }
