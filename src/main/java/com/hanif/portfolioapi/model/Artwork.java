@@ -27,7 +27,7 @@ public class Artwork {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    private LocalDateTime createAt;
+    private LocalDateTime updatedAt;
 
     private Boolean visible;
 
@@ -41,12 +41,12 @@ public class Artwork {
 
     @PrePersist
     protected  void onCreate() {
-        this.createAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
     }
 
     @PreUpdate
     protected  void onUpdate() {
-        this.createAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
     }
 
     public void addImage(ArtworkImage image) {

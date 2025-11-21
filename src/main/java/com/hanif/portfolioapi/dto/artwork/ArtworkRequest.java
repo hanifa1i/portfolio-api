@@ -10,10 +10,8 @@ public class ArtworkRequest {
     private String title;
     private String description;
     private Boolean visible;
-
     @JsonProperty("image_urls")
     private List<String> imageUrls;
-
     @JsonProperty("tag_names")
     private List<String> tagNames;
 }

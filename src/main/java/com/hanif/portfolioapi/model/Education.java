@@ -35,5 +35,15 @@ public class Education {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+
+    @PrePersist
+    protected  void onCreate() {
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected  void onUpdate() {
+        this.updatedAt = LocalDateTime.now();
+    }
 }

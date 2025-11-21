@@ -1,4 +1,4 @@
-package com.hanif.portfolioapi.controller;
+package com.hanif.portfolioapi.controller.artwork;
 
 import com.hanif.portfolioapi.dto.artwork.ArtworkResponse;
 import com.hanif.portfolioapi.service.ArtworkService;

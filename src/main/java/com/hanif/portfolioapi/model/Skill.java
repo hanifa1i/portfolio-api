@@ -36,7 +36,17 @@ public class Skill {
     @Enumerated(EnumType.STRING)
     private Set<ExperienceLocation> experienceLocations;
 
-    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     private Boolean visible;
+
+    @PrePersist
+    protected  void onCreate() {
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected  void onUpdate() {
+        this.updatedAt = LocalDateTime.now();
+    }
 }

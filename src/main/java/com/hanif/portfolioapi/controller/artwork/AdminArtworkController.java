@@ -1,37 +1,35 @@
-package com.hanif.portfolioapi.controller;
+package com.hanif.portfolioapi.controller.artwork;
 
 import com.hanif.portfolioapi.dto.artwork.ArtworkRequest;
 import com.hanif.portfolioapi.dto.artwork.VisibilityRequest;
-import com.hanif.portfolioapi.service.AdminService;
+import com.hanif.portfolioapi.service.ArtworkService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/admin")
 @RequiredArgsConstructor
-public class AdminController {
+public class AdminArtworkController {
 
-    private final AdminService adminService;
+    private final ArtworkService artworkService;
 
     @PostMapping("/artworks/create")
     public void createArtwork(@RequestBody ArtworkRequest request) {
-        adminService.createArtwork(request);
+        artworkService.createArtwork(request);
     }
 
     @PostMapping("/artworks/{id}/update")
     public void updateArtwork(@PathVariable Long id, @RequestBody ArtworkRequest request) {
-        adminService.updateArtwork(id, request);
+        artworkService.updateArtwork(id, request);
     }
 
     @PatchMapping("/artworks/{id}/visibility")
     public void visibility(@PathVariable Long id, @RequestBody VisibilityRequest request) {
-        adminService.visibility(id, request);
+        artworkService.visibility(id, request);
     }
 
     @DeleteMapping("/artworks/{id}/delete")
     public void deleteArtwork(@PathVariable Long id) {
-        adminService.deleteArtwork(id);
+        artworkService.deleteArtwork(id);
     }
-
-
 }

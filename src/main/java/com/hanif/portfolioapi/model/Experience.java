@@ -10,12 +10,12 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "work_experience")
+@Table(name = "experience")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class WorkExperience {
+public class Experience {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -33,6 +33,15 @@ public class WorkExperience {
 
     private LocalDate endDate;
 
-    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
+    @PrePersist
+    protected  void onCreate() {
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected  void onUpdate() {
+        this.updatedAt = LocalDateTime.now();
+    }
 }
