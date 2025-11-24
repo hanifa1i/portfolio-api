@@ -2,6 +2,7 @@ package com.hanif.portfolioapi.controller.education;
 
 import com.hanif.portfolioapi.dto.education.EducationRequest;
 import com.hanif.portfolioapi.service.EducationService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,12 +14,12 @@ public class AdminEducationController {
     private final EducationService educationService;
 
     @PostMapping("/create")
-    public void createEducation(@RequestBody EducationRequest educationRequest) {
+    public void createEducation(@Valid  @RequestBody EducationRequest educationRequest) {
         educationService.createEducation(educationRequest);
     }
 
     @PatchMapping("/{id}/update")
-    public void updateEducation(@PathVariable Long id, @RequestBody EducationRequest educationRequest) {
+    public void updateEducation(@PathVariable Long id, @Valid @RequestBody EducationRequest educationRequest) {
         educationService.updateEducation(id, educationRequest);
     }
 

@@ -3,6 +3,7 @@ package com.hanif.portfolioapi.controller.auth;
 import com.hanif.portfolioapi.dto.auth.LoginRequest;
 import com.hanif.portfolioapi.dto.auth.LoginResponse;
 import com.hanif.portfolioapi.service.AuthService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +19,7 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<LoginResponse> login(@Valid  @RequestBody LoginRequest loginRequest) {
         return ResponseEntity.ok(authService.login(loginRequest));
     }
 
