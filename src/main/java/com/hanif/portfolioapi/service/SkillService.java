@@ -3,12 +3,14 @@ package com.hanif.portfolioapi.service;
 import com.hanif.portfolioapi.dto.skill.SkillRequest;
 import com.hanif.portfolioapi.dto.skill.SkillResponse;
 import com.hanif.portfolioapi.enums.ExperienceLocation;
+import com.hanif.portfolioapi.enums.SkillType;
 import com.hanif.portfolioapi.model.Skill;
 import com.hanif.portfolioapi.repository.SkillRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -55,8 +57,11 @@ public class SkillService {
         return Skill.builder()
                 .name(skillRequest.getName())
                 .description(skillRequest.getDescription())
-                .skillType(skillRequest.getSkillType())
-                .experienceLocations(skillRequest.getExperienceLocations())
+                .skillType(SkillType.valueOf(skillRequest.getSkillType()))
+                .experienceLocations(skillRequest.getExperienceLocations()
+                        .stream()
+                        .map(ExperienceLocation::valueOf)
+                        .collect(Collectors.toSet()))
                 .visible(skillRequest.getVisible())
                 .build();
     }
