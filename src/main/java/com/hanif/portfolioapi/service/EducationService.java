@@ -2,12 +2,13 @@ package com.hanif.portfolioapi.service;
 
 import com.hanif.portfolioapi.dto.education.EducationRequest;
 import com.hanif.portfolioapi.dto.education.EducationResponse;
+import com.hanif.portfolioapi.exceptions.NotFoundException;
 import com.hanif.portfolioapi.model.Education;
 import com.hanif.portfolioapi.repository.EducationRepository;
+import com.hanif.portfolioapi.validation.ResponseMessages;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,18 +22,26 @@ public class EducationService {
                 .map(this::toResponse).toList();
     }
 
-    public void createEducation(EducationRequest request) {
+    public Long createEducation(EducationRequest request) {
         Education education = mapToEntity(request);
         educationRepository.save(education);
+
+        return education.getId();
     }
 
     public void updateEducation(Long id, EducationRequest request) {
+        educationRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(String.format(ResponseMessages.EDUCATION_NOT_FOUND, id)));
+
         Education education = mapToEntity(request);
         education.setId(id);
         educationRepository.save(education);
     }
 
     public void deleteEducation(Long id) {
+        educationRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(String.format(ResponseMessages.EDUCATION_NOT_FOUND, id)));
+
         educationRepository.deleteById(id);
     }
 

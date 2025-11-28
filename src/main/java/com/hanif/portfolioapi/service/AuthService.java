@@ -2,9 +2,11 @@ package com.hanif.portfolioapi.service;
 
 import com.hanif.portfolioapi.dto.auth.LoginRequest;
 import com.hanif.portfolioapi.dto.auth.LoginResponse;
+import com.hanif.portfolioapi.exceptions.NotFoundException;
 import com.hanif.portfolioapi.model.User;
 import com.hanif.portfolioapi.repository.UserRepository;
 import com.hanif.portfolioapi.security.JwtTokenUtil;
+import com.hanif.portfolioapi.validation.ResponseMessages;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,10 +24,10 @@ public class AuthService {
     public LoginResponse login(LoginRequest loginRequest) {
 
         User user = userRepository.findByUsername(loginRequest.getUsername())
-                .orElseThrow(() -> new RuntimeException("Username not found"));
+                .orElseThrow(() -> new NotFoundException(ResponseMessages.USER_NOT_FOUND));
 
-        if(!passwordEncoder.matches(loginRequest.getPassword(), user.getPasswordHash())) {
-            throw new RuntimeException("Wrong password");
+        if (!passwordEncoder.matches(loginRequest.getPassword(), user.getPasswordHash())) {
+            throw new NotFoundException(ResponseMessages.PASSWORD_NOT_FOUND);
         }
 
         user.setLastLogin(LocalDateTime.now());

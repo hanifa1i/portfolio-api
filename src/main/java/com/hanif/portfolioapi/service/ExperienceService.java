@@ -2,8 +2,10 @@ package com.hanif.portfolioapi.service;
 
 import com.hanif.portfolioapi.dto.experience.ExperienceRequest;
 import com.hanif.portfolioapi.dto.experience.ExperienceResponse;
+import com.hanif.portfolioapi.exceptions.NotFoundException;
 import com.hanif.portfolioapi.model.Experience;
 import com.hanif.portfolioapi.repository.ExperienceRepository;
+import com.hanif.portfolioapi.validation.ResponseMessages;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,18 +22,26 @@ public class ExperienceService {
                 .map(this::toResponse).toList();
     }
 
-    public void createExperience(ExperienceRequest experienceRequest) {
+    public Long createExperience(ExperienceRequest experienceRequest) {
         Experience experience = mapToEntity(experienceRequest);
         experienceRepository.save(experience);
+
+        return experience.getId();
     }
 
     public void updateExperience(Long id, ExperienceRequest experienceRequest) {
+        experienceRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(String.format(ResponseMessages.EXPERIENCE_NOT_FOUND, id)));
+
         Experience experience = mapToEntity(experienceRequest);
         experience.setId(id);
         experienceRepository.save(experience);
     }
 
     public void deleteExperience(Long id) {
+        experienceRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(String.format(ResponseMessages.EXPERIENCE_NOT_FOUND, id)));
+
         experienceRepository.deleteById(id);
     }
 

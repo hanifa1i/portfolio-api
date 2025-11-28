@@ -4,8 +4,10 @@ import com.hanif.portfolioapi.dto.skill.SkillRequest;
 import com.hanif.portfolioapi.dto.skill.SkillResponse;
 import com.hanif.portfolioapi.enums.ExperienceLocation;
 import com.hanif.portfolioapi.enums.SkillType;
+import com.hanif.portfolioapi.exceptions.NotFoundException;
 import com.hanif.portfolioapi.model.Skill;
 import com.hanif.portfolioapi.repository.SkillRepository;
+import com.hanif.portfolioapi.validation.ResponseMessages;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,18 +25,26 @@ public class SkillService {
                 .map(this::toResponse).toList();
     }
 
-    public void createSkill(SkillRequest skillRequest) {
+    public Long createSkill(SkillRequest skillRequest) {
         Skill skill = mapToEntity(skillRequest);
         skillRepository.save(skill);
+
+        return skill.getId();
     }
 
     public void updateSkill(Long id, SkillRequest skillRequest) {
+        skillRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(String.format(ResponseMessages.SKILL_NOT_FOUND, id)));
+
         Skill skill = mapToEntity(skillRequest);
         skill.setId(id);
         skillRepository.save(skill);
     }
 
     public void deleteSkill(Long id) {
+        skillRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(String.format(ResponseMessages.SKILL_NOT_FOUND, id)));
+
         skillRepository.deleteById(id);
     }
 
