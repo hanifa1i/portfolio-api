@@ -22,15 +22,6 @@ public class ArtworkRequest {
 
     private Boolean visible;
 
-    @NotNull(message = ValidationMessages.NULL)
-    @Size(min = 1, message = ValidationMessages.REQUIRED)
-    @JsonProperty("image_urls")
-    private List<
-            @Pattern(
-                    regexp = ValidationPatterns.URL,
-                    message = ValidationMessages.INVALID_URL
-            ) String> imageUrls;
-
     @JsonProperty("tag_names")
     private List<
             @NotBlank(

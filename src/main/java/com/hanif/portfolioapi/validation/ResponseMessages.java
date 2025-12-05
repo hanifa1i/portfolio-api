@@ -20,6 +20,7 @@ public class ResponseMessages {
 
     //Unsuccessful
     public static final String ARTWORK_NOT_FOUND = "Artwork with the id: %d, does not exist";
+    public static final String IMAGE_NOT_FOUND = "Image with the id: %d, does not exist";
     public static final String TAG_NOT_FOUND = "Artworks with the tag: %s, does not exist";
     public static final String EDUCATION_NOT_FOUND = "Education with the id: %d, does not exist";
     public static final String EXPERIENCE_NOT_FOUND = "Experience with the id: %d, does not exist";
