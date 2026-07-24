@@ -3,6 +3,7 @@ package com.hanif.portfolioapi.controller.artwork;
 import com.hanif.portfolioapi.dto.artwork.ArtworkRequest;
 import com.hanif.portfolioapi.dto.artwork.VisibilityRequest;
 import com.hanif.portfolioapi.dto.common.ApiResponse;
+import com.hanif.portfolioapi.dto.common.UpdateImagesRequest;
 import com.hanif.portfolioapi.service.ArtworkService;
 import com.hanif.portfolioapi.service.S3Service;
 import com.hanif.portfolioapi.validation.ResponseMessages;
@@ -13,13 +14,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/admin/artworks")
 @RequiredArgsConstructor
 public class AdminArtworkController {
 
-    private final ArtworkService artworkService;
+    private final ArtworkService  artworkService;
 
     @PostMapping("/create")
     public ResponseEntity<ApiResponse> createArtwork(@Valid @RequestBody ArtworkRequest request) {
@@ -55,7 +57,14 @@ public class AdminArtworkController {
 
         String imageUrl = artworkService.uploadArtworkImage(id, image);
 
-        return ApiResponse.success("Image added: " + imageUrl, null);
+        return ApiResponse.success(imageUrl, null);
+    }
+    @PostMapping("/{id}/image/update")
+    public ResponseEntity<ApiResponse> updateArtworkImage(@PathVariable Long id, @RequestBody UpdateImagesRequest request){
+
+        List<String> imageUrls = artworkService.updateArtworkImages(id, request);
+
+        return ApiResponse.success(imageUrls.toString(), id);
     }
 
     @DeleteMapping("/{artworkId}/image/delete/{imageId}")

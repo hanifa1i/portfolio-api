@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Past;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 public class ExperienceRequest {
@@ -31,4 +32,10 @@ public class ExperienceRequest {
 
     @JsonProperty("end_date")
     private LocalDate endDate;
+
+    private List<WorkProjectRequest> projects;
+
+    private List<WorkActivityRequest> activities;
+
+    private List<String> skills;
 }

@@ -16,11 +16,15 @@ public class ResponseMessages {
     public static final String SKILL_CREATED = "Skill added successfully";
     public static final String SKILL_UPDATED = "Skill updated successfully";
     public static final String SKILL_DELETED = "Skill deleted successfully";
-
+    public static final String TAGS_CREATED = "Multiple tags added successfully";
+    public static final String TAG_CREATED = "Tag added successfully";
+    public static final String TAG_DELETED = "Tag deleted successfully";
 
     //Unsuccessful
     public static final String ARTWORK_NOT_FOUND = "Artwork with the id: %d, does not exist";
     public static final String IMAGE_NOT_FOUND = "Image with the id: %d, does not exist";
+    public static final String EXAMPLE_NOT_FOUND = "Example Image with the id: %d, does not exist";
+
     public static final String TAG_NOT_FOUND = "Artworks with the tag: %s, does not exist";
     public static final String EDUCATION_NOT_FOUND = "Education with the id: %d, does not exist";
     public static final String EXPERIENCE_NOT_FOUND = "Experience with the id: %d, does not exist";

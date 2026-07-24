@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Past;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 public class EducationRequest {
@@ -31,4 +32,7 @@ public class EducationRequest {
     private LocalDate endDate;
 
     private String description;
+
+    @JsonProperty("certificates")
+    private List<String> certificates;
 }

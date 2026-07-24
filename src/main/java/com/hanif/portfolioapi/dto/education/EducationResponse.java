@@ -1,11 +1,13 @@
 package com.hanif.portfolioapi.dto.education;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.hanif.portfolioapi.dto.common.ImageResponse;
 import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Builder
@@ -22,4 +24,5 @@ public class EducationResponse {
     private String description;
     @JsonProperty("create_at")
     private LocalDateTime updatedAt;
+    private List<ImageResponse> certificates;
 }

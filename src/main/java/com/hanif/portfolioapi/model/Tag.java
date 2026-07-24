@@ -10,7 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "tag")
+@Table(
+        name = "tag",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"type", "name"})
+)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,6 +25,8 @@ public class Tag {
     private Integer id;
 
     private String name;
+
+    private String type;
 
     @Builder.Default
     @OneToMany(mappedBy = "tag")

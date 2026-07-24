@@ -30,6 +30,18 @@ public class ArtworkController {
         return ResponseEntity.ok(artworkService.getArtworksByTag(name));
     }
 
+    @GetMapping("/sketchbooks")
+    public ResponseEntity<List<ArtworkResponse>> getSketchbook() {
+        return ResponseEntity.ok(artworkService.getSketchbookArt());
+    }
+    @GetMapping("/standalone")
+    public ResponseEntity<List<ArtworkResponse>> getStandalone() {
+        return ResponseEntity.ok(artworkService.getStandaloneArtworks());
+    }
+    @GetMapping("/recent/{amount}")
+    public ResponseEntity<List<ArtworkResponse>> getRecent(@PathVariable Integer amount) {
+        return ResponseEntity.ok(artworkService.getRecent(amount));
+    }
 
 
 }

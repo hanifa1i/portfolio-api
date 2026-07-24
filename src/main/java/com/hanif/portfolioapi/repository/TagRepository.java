@@ -15,4 +15,6 @@ public interface TagRepository extends JpaRepository<Tag, Long> {
 
     @Query("SELECT tag FROM Tag tag WHERE tag.name = :name")
     Optional<Tag> fingByName(String name);
+
+    boolean existsByTypeAndName(String type, String name);
 }

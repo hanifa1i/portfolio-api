@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "experience")
@@ -35,6 +37,18 @@ public class Experience {
 
     private LocalDateTime updatedAt;
 
+    @Builder.Default
+    @OneToMany(mappedBy = "experience", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<WorkProject> projects = new ArrayList<>();
+
+    @Builder.Default
+    @OneToMany(mappedBy = "experience", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<WorkActivity> activities = new ArrayList<>();
+
+    @Builder.Default
+    @OneToMany(mappedBy = "experience", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<WorkSkill> skills = new ArrayList<>();
+
     @PrePersist
     protected  void onCreate() {
         this.updatedAt = LocalDateTime.now();
@@ -44,4 +58,18 @@ public class Experience {
     protected  void onUpdate() {
         this.updatedAt = LocalDateTime.now();
     }
+
+    public void addProject(WorkProject project) {
+        projects.add(project);
+        project.setExperience(this);
+    }
+    public void addActivity(WorkActivity activity) {
+        activities.add(activity);
+        activity.setExperience(this);
+    }
+    public void addSkill(WorkSkill skill) {
+        skills.add(skill);
+        skill.setExperience(this);
+    }
+
 }

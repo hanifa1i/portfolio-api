@@ -10,6 +10,8 @@ public class DashboardResponse {
 
     @JsonProperty("total_artworks")
     long totalArtworks;
+    @JsonProperty("total_sketchbook_pages")
+    long totalSketchbookPages;
     @JsonProperty("total_skills")
     long totalSkills;
     @JsonProperty("total_experience")

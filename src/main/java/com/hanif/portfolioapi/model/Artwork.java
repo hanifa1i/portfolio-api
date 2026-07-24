@@ -27,9 +27,18 @@ public class Artwork {
     @Column(columnDefinition = "TEXT")
     private String description;
 
+    @Column(updatable = false)
+    private LocalDateTime createdAt;
+
     private LocalDateTime updatedAt;
 
     private Boolean visible;
+
+    private Boolean bookPage;
+
+    private Integer pageNumber;
+
+    private String tool;
 
     @Builder.Default
     @OneToMany(mappedBy = "artwork", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -41,7 +50,7 @@ public class Artwork {
 
     @PrePersist
     protected  void onCreate() {
-        this.updatedAt = LocalDateTime.now();
+        this.createdAt = LocalDateTime.now();
     }
 
     @PreUpdate
@@ -58,5 +67,4 @@ public class Artwork {
         artworkTagLinks.add(link);
         link.setArtwork(this);
     }
-
 }

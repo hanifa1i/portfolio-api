@@ -9,6 +9,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -35,6 +37,10 @@ public class Skill {
     @Column(name = "experience_location")
     @Enumerated(EnumType.STRING)
     private Set<ExperienceLocation> experienceLocations;
+
+    @Builder.Default
+    @OneToMany(mappedBy = "skill", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SkillExample> examples = new ArrayList<>();
 
     private LocalDateTime updatedAt;
 

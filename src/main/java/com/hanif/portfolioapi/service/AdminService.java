@@ -19,7 +19,8 @@ public class AdminService {
 
     public DashboardResponse getDashboardData(){
         return DashboardResponse.builder()
-                .totalArtworks(artworkRepository.count())
+                .totalArtworks(artworkRepository.countDigitalArt())
+                .totalSketchbookPages(artworkRepository.countSketchbookArt())
                 .totalSkills(skillRepository.count())
                 .totalExperience(experienceRepository.count())
                 .totalQualifications(educationRepository.count())

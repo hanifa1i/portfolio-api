@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "education")
@@ -35,6 +37,10 @@ public class Education {
     @Column(columnDefinition = "TEXT")
     private String description;
 
+    @Builder.Default
+    @OneToMany(mappedBy = "education",  cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Certificate> certificates =  new ArrayList<>();
+
     private LocalDateTime updatedAt;
 
     @PrePersist
@@ -45,5 +51,10 @@ public class Education {
     @PreUpdate
     protected  void onUpdate() {
         this.updatedAt = LocalDateTime.now();
+    }
+
+    public void addCertificate(Certificate certificate) {
+        certificates.add(certificate);
+        certificate.setEducation(this);
     }
 }

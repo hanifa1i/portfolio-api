@@ -2,11 +2,8 @@ package com.hanif.portfolioapi.dto.artwork;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.hanif.portfolioapi.validation.ValidationMessages;
-import com.hanif.portfolioapi.validation.ValidationPatterns;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+
 import lombok.Data;
 
 import java.util.List;
@@ -22,9 +19,20 @@ public class ArtworkRequest {
 
     private Boolean visible;
 
+    @JsonProperty("image_urls")
+    private List<String> imageUrls;
+
     @JsonProperty("tag_names")
     private List<
             @NotBlank(
                     message = ValidationMessages.REQUIRED
             ) String> tagNames;
+
+    @JsonProperty("book_page")
+    private Boolean bookPage;
+
+    @JsonProperty("page_number")
+    private Integer pageNumber;
+
+    private String tool;
 }

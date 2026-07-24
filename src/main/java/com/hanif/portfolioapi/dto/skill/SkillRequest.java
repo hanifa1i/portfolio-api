@@ -3,6 +3,7 @@ package com.hanif.portfolioapi.dto.skill;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.hanif.portfolioapi.enums.ExperienceLocation;
 import com.hanif.portfolioapi.enums.SkillType;
+import com.hanif.portfolioapi.model.SkillExample;
 import com.hanif.portfolioapi.validation.ValidationMessages;
 import com.hanif.portfolioapi.validation.enumvalidation.ValidEnum;
 import jakarta.validation.Valid;
@@ -10,6 +11,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -32,4 +34,6 @@ public class SkillRequest {
             > experienceLocations;
 
     private Boolean visible;
+
+    private List<SkillExample> examples;
 }
