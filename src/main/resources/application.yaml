@@ -22,7 +22,7 @@ aws:
   access-key: ${AWS_ACCESS_KEY}
   secret-key: ${AWS_SECRET_KEY}
   region: eu-west-2
-  bucket: hanif-portfolio-bucket
+  bucket: ${AWS_BUCKET}
 
 jwt:
   secret: ${JWT_SECRET}
