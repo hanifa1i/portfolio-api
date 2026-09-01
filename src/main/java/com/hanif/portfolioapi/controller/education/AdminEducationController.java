@@ -28,7 +28,7 @@ public class AdminEducationController {
         return ApiResponse.success(ResponseMessages.EDUCATION_CREATED, id);
     }
 
-    @PatchMapping("/{id}/update")
+    @PostMapping("/{id}/update")
     public ResponseEntity<ApiResponse> updateEducation(@PathVariable Long id, @Valid @RequestBody EducationRequest educationRequest) {
         educationService.updateEducation(id, educationRequest);
 
