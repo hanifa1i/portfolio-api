@@ -15,7 +15,7 @@ public class AppConfig {
     @Value("${ADMIN_USERNAME}")
     private String ADMIN_USERNAME;
 
-    @Value("${ADMIN_PASSWORD")
+    @Value("${ADMIN_PASSWORD}")
     private String ADMIN_PASSWORD;
 
     @Bean
