@@ -28,7 +28,7 @@ public class AdminSkillController {
         return ApiResponse.success(ResponseMessages.SKILL_CREATED, id);
     }
 
-    @PatchMapping("/{id}/update")
+    @PostMapping("/{id}/update")
     public ResponseEntity<ApiResponse> updateSkill(@PathVariable Long id, @Valid @RequestBody SkillRequest skillRequest) {
         skillService.updateSkill(id, skillRequest);
 

@@ -24,7 +24,7 @@ public class AdminExperienceController {
 
     }
 
-    @PatchMapping("/{id}/update")
+    @PostMapping("/{id}/update")
     public ResponseEntity<ApiResponse> updateExperience(@PathVariable Long id, @Valid @RequestBody ExperienceRequest experienceRequest) {
         experienceService.updateExperience(id, experienceRequest);
 
