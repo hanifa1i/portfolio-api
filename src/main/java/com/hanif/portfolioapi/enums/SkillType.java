@@ -5,8 +5,8 @@ public enum SkillType {
     BACKEND_AND_DEVOPS("back-end & devOps"),
     TESTING("testing"),
     DATABASES_AND_MESSAGE_BROKERS("databases & message brokers"),
-    API_AND_INTEGRATION("API & design awareness"),
-    FRONTEND_AND_DESIGN_AWARENESS("front-end & design awareness"),
+    API_AND_INTEGRATION("API & integration "),
+    DESIGN("design"),
     SECURITY_AND_BEST_PRACTICES("security & best practices"),
     COLLABORATION_AND_WORKFLOW("collaboration & workflow");
 
