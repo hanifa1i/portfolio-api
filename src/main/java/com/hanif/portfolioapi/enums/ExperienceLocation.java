@@ -5,7 +5,8 @@ public enum ExperienceLocation {
     UXBRIDGE_COLLAGE("uxbridge college"),
     BRUNEL_UNIVERSITY("brunel university"),
     SPARTA_GLOBAL("sparta global"),
-    HMLR("land registry");
+    HMLR("land registry"),
+    PORTFOLIO("portfolio");
 
     private final String displayName;
 
