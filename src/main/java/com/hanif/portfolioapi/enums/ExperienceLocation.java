@@ -2,7 +2,7 @@ package com.hanif.portfolioapi.enums;
 
 public enum ExperienceLocation {
     SELF_STUDY("self-study"),
-    UXBRIDGE_COLLAGE("uxbridge college"),
+    UXBRIDGE_COLLEGE("uxbridge college"),
     BRUNEL_UNIVERSITY("brunel university"),
     SPARTA_GLOBAL("sparta global"),
     HMLR("land registry"),
